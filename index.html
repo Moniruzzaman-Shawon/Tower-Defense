@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Tiny TD (stub)</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 8px; }
+    #hud { margin-bottom: 6px; }
+    #hud span { margin-right: 12px; }
+    canvas {
+      border:2px solid #444;
+      box-shadow:0 0 20px rgba(0,0,0,.4);
+      background: repeating-linear-gradient(
+          45deg,
+          #36402b,
+          #36402b 20px,
+          #3e4a2f 20px,
+          #3e4a2f 40px
+      );
+    }
+    #buildBar button { margin-right:6px }
+    #towerPanel { margin-top:6px }
+  </style>
+</head>
+<body>
+  <div id="hud">
+    <span id="coins">Coins: 0</span>
+    <span id="lives">Lives: 0</span>
+    <span id="wave">Wave 0/10</span>
+    <button id="startWave">Start Wave</button>
+    <button id="pauseBtn">Pause (P)</button>
+    <button id="speedBtn">Speed ×1</button>
+    <button id="continueBtn" style="display:none">Continue Save</button>
+    <button id="clearSave">Clear Save</button>
+  </div>
+
+  <div id="buildBar">
+    <button id="buildArrow">Arrow (50)</button>
+    <button id="buildCannon">Cannon (80)</button>
+    <span id="placing" style="margin-left:8px;color:#666"></span>
+  </div>
+
+  <canvas id="gameCanvas" width="800" height="500"></canvas>
+
+  <div id="towerPanel"></div>
+
+  <script src="game-utils.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
