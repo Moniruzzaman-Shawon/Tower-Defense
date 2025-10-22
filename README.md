@@ -100,10 +100,8 @@ Copy code
 
 ## 📦 Deployment & Hosting
 
-To host the game publicly, simply upload the repository’s contents to any static hosting provider —  
-**GitHub Pages**, **Netlify**, or **Vercel** work great.
 
-### Example (GitHub Pages):
+### Example (Page):
 
 <img width="1086" height="606" alt="image" src="https://github.com/user-attachments/assets/0d8324ef-0dc3-4e20-a23b-db2a0298f6c3" />
 
