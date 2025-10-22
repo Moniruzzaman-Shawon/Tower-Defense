@@ -44,7 +44,7 @@ Then navigate to [http://localhost:8000/index.html](http://localhost:8000/index.
 
 The game will load — start playing right away.
 
-🕹️ How to Play
+## 🕹️ How to Play
 On the game page you’ll see the map and available tower buttons.
 
 Click a tower type to select it, then click a valid tile on the map to place it.
@@ -67,7 +67,7 @@ You’ll need to adapt your tower placements and upgrade path.
 
 The game ends when your base is breached or you complete all waves (if specified).
 
-Basic Controls
+## Basic Controls
 🎯 Select Tower: Click a tower icon in the sidebar.
 
 🏗 Place Tower: After selecting, click on a valid map tile.
@@ -78,7 +78,7 @@ Basic Controls
 
 🔄 Restart Game: At game over screen, click “Play Again” to reset.
 
-✅ Key Features
+## ✅ Key Features
 Multiple tower types, each with unique attack mechanics and upgrade paths.
 
 Progressive waves of enemies, increasing in difficulty.
@@ -89,9 +89,8 @@ Resource management and strategic depth: when and where to build/upgrade matters
 
 Responsive UI works across desktop and modern browsers.
 
-🧩 Structure
-bash
-Copy code
+## 🧩 Structure
+```
 /Tower-Defense
 |–– index.html       ← Main entry point
 
@@ -107,7 +106,8 @@ Copy code
 
 |–– .github/         ← GitHub workflows (CI/CD)
 
-📦 Deployment & Hosting
+```
+## 📦 Deployment & Hosting
 To host the game publicly, simply upload the repository’s contents to any static-hosting provider (GitHub Pages, Netlify, Vercel, etc.).
 
 Example (GitHub Pages):
@@ -116,7 +116,7 @@ In your repo settings enable GitHub Pages for the main branch.
 
 Wait for the published link and share it with players.
 
-📝 Contributing
+## 📝 Contributing
 Contributions are welcome! To propose changes:
 
 Fork the repository and create a new branch for your feature or bug fix.
@@ -128,12 +128,13 @@ Submit a Pull Request describing your changes.
 I will review and merge when ready.
 
 📄 License
-Specify your project’s license here (e.g. MIT) and link to a LICENSE file if included.
+```Specify your project’s license here (e.g. MIT) and link to a LICENSE file if included.```
 
-scss
-Copy code
+
 MIT License (c) [Year] [Your Name or Organization]
-👤 Author
+
+## 👤 Author
+
 Moniruzzaman Shawon — GitHub profile
 Feel free to reach out for questions or suggestions.
 
