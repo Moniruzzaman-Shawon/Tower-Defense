@@ -105,10 +105,8 @@ To host the game publicly, simply upload the repository’s contents to any stat
 
 ### Example (GitHub Pages):
 
-1. Go to your repository **Settings → Pages**.  
-2. Select the **main branch** and root folder (`/`).  
-3. Save the settings.  
-4. Wait for deployment, then share your **live link** with players.
+<img width="1086" height="606" alt="image" src="https://github.com/user-attachments/assets/0d8324ef-0dc3-4e20-a23b-db2a0298f6c3" />
+
 
 ---
 
