@@ -53,6 +53,8 @@ let coinsEl = document.getElementById('coins');
 let livesEl = document.getElementById('lives');
 let waveEl = document.getElementById('wave');
 let placingEl = document.getElementById('placing');
+let greetingEl = document.getElementById('greeting');
+let leaderboardEl = document.getElementById('leaderboardEntries');
 
 let paused = false; let speed = 1;
 
@@ -179,8 +181,10 @@ function update(dt){
 
   // eviction of dead beyond end
   if(state.player.lives <= 0){ // defeat reset
-    // minimal defeat: reset
-    alert('Defeat - reload to try again');
+    // defeat: update leaderboard, then reset
+    alert('Defeat - game over');
+    // use coins as score metric
+    try{ if(window.getPlayerName){ const name = getPlayerName() || 'Player'; updateLeaderboardEntry(name, state.player.coins); renderLeaderboard(); } }catch(e){ console.warn('leaderboard update failed', e); }
     state = makeInitialState(); towers = []; creeps = []; projectiles = [];
     saveGame(state);
   }
@@ -248,5 +252,51 @@ function gameTick(ts){ if(!paused){ update(1/60 * speed); render(); } requestAni
 function startLoop(){ requestAnimationFrame(gameTick); }
 
 // initialize
+function promptForNameIfNeeded(){ const existing = getPlayerName(); if(existing){ greetingEl.textContent = `Welcome back, ${existing}!`; } else { // show inline input for name
+  changeNameInput.style.display = 'inline-block'; changeNameSave.style.display = 'inline-block'; changeNameInput.value = '';
+  changeNameInput.focus();
+  // clicking save will set the name and hide input
+ }}
+
+function renderLeaderboard(){ try{ const arr = loadLeaderboard(); if(!arr || arr.length===0){ leaderboardEl.textContent = '(empty)'; return; } leaderboardEl.innerHTML = arr.map(r=>`<div style="padding:4px;border-bottom:1px solid #eee"><strong>${r.name}</strong><div style="font-size:12px;color:#666">Score: ${r.score} — ${new Date(r.iso).toLocaleString()}</div></div>`).join(''); }catch(e){ leaderboardEl.textContent='(error)'; }}
+
+// Inline change-name UI (better for accessibility and testing)
+const changeNameBtn = document.getElementById('changeName');
+const changeNameInput = document.getElementById('changeNameInput');
+const changeNameSave = document.getElementById('changeNameSave');
+changeNameBtn.addEventListener('click', ()=>{
+  changeNameInput.style.display = 'inline-block';
+  changeNameSave.style.display = 'inline-block';
+  changeNameInput.value = getPlayerName() || '';
+  changeNameInput.focus();
+});
+changeNameSave.addEventListener('click', ()=>{
+  const v = changeNameInput.value && changeNameInput.value.trim();
+  if(v){ setPlayerName(v); greetingEl.textContent = `Welcome back, ${v}!`; }
+  changeNameInput.style.display = 'none'; changeNameSave.style.display = 'none';
+});
+
+renderLeaderboard();
+promptForNameIfNeeded();
 updateHUD();
 startLoop();
+
+// Keyboard accessibility shortcuts
+document.addEventListener('keydown', (e) => {
+  // ignore when typing in inputs or contentEditable
+  const tgt = e.target;
+  if(tgt && (tgt.tagName === 'INPUT' || tgt.tagName === 'TEXTAREA' || tgt.isContentEditable)) return;
+
+  if(e.key === 'c' || e.key === 'C'){
+    // open change name flow (show inline input)
+    e.preventDefault();
+    changeNameInput.style.display = 'inline-block'; changeNameSave.style.display = 'inline-block'; changeNameInput.focus();
+  }
+
+  if(e.key === 'l' || e.key === 'L'){
+    // focus leaderboard for keyboard users
+    e.preventDefault();
+    const lb = document.getElementById('leaderboard');
+    if(lb){ lb.focus(); }
+  }
+});

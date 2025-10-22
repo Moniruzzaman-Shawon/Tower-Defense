@@ -67,6 +67,27 @@ function clearSave() {
   localStorage.removeItem(SAVE_KEY);
 }
 
+// Player name helper
+const PLAYER_NAME_KEY = 'playerName';
+function getPlayerName(){ return localStorage.getItem(PLAYER_NAME_KEY) || null; }
+function setPlayerName(name){ if(typeof name==='string') localStorage.setItem(PLAYER_NAME_KEY, name); }
+
+// Leaderboard helpers: stored as array of {name,score,iso}
+const LEADERBOARD_KEY = 'leaderboard';
+function loadLeaderboard(){ try{ const s = localStorage.getItem(LEADERBOARD_KEY); return s? JSON.parse(s): []; }catch(e){ console.error('loadLeaderboard',e); return []; }}
+function saveLeaderboard(arr){ try{ localStorage.setItem(LEADERBOARD_KEY, JSON.stringify(arr)); return true;}catch(e){ console.error('saveLeaderboard',e); return false; }}
+function updateLeaderboardEntry(name, score){ if(!name) return; const arr = loadLeaderboard(); const iso = (new Date()).toISOString(); const existing = arr.find(r=>r.name===name);
+  if(existing){ if(score > existing.score){ existing.score = score; existing.iso = iso; }} else { arr.push({name,score,iso}); }
+  // sort desc by score, tiebreak by newest iso (most recent first)
+  arr.sort((a,b)=>{
+    if(b.score !== a.score) return b.score - a.score;
+    const ta = Date.parse(a.iso) || 0;
+    const tb = Date.parse(b.iso) || 0;
+    return tb - ta;
+  });
+  saveLeaderboard(arr); return arr;
+}
+
 // Example: how to create initial save state
 function makeInitialState() {
   return {
