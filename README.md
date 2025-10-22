@@ -1,5 +1,4 @@
-
-# Tower-Defense 🎮
+# Tower-Defense
 
 A browser-based tower defense game built using HTML, JavaScript and CSS.
 
@@ -36,12 +35,11 @@ Open index.html in your web browser.
 
 Alternatively, run a local server from the directory, for example:
 
-bash
-Copy code
 
 # using Python 3
-
+```
 python3 -m http.server 8000
+```
 Then navigate to [http://localhost:8000/index.html](http://localhost:8000/index.html).
 
 The game will load — start playing right away.
@@ -92,7 +90,8 @@ Resource management and strategic depth: when and where to build/upgrade matters
 Responsive UI works across desktop and modern browsers.
 
 🧩 Structure
-```
+bash
+Copy code
 /Tower-Defense
 |–– index.html       ← Main entry point
 
@@ -107,7 +106,6 @@ Responsive UI works across desktop and modern browsers.
 |–– .vscode/         ← Editor/workspace settings
 
 |–– .github/         ← GitHub workflows (CI/CD)
-```
 
 📦 Deployment & Hosting
 To host the game publicly, simply upload the repository’s contents to any static-hosting provider (GitHub Pages, Netlify, Vercel, etc.).
@@ -132,7 +130,8 @@ I will review and merge when ready.
 📄 License
 Specify your project’s license here (e.g. MIT) and link to a LICENSE file if included.
 
-
+scss
+Copy code
 MIT License (c) [Year] [Your Name or Organization]
 👤 Author
 Moniruzzaman Shawon — GitHub profile
